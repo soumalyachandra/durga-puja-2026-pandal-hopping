@@ -1,0 +1,41 @@
+# Durga Puja 2026 Pandal Hopping — full stack for homelab / local self-hosting.
+#
+#   docker compose up --build
+#
+# Then open http://localhost:8080  (or http://<server-lan-ip>:8080 on your LAN).
+#
+# The frontend (nginx) serves the built React app and reverse-proxies /api to
+# the backend, so the browser talks to a single origin — no CORS headaches and
+# nothing host-specific baked into the build.
+
+services:
+  backend:
+    build:
+      context: ./backend
+    image: durga-puja-2026/backend:latest
+    restart: unless-stopped
+    environment:
+      # nginx proxies same-origin, so CORS isn't strictly needed; keep permissive
+      # for anyone hitting the API directly on the LAN.
+      ALLOWED_ORIGINS: "*"
+    expose:
+      - "8000"
+    # Uncomment to also reach the API directly from the LAN (e.g. for debugging):
+    # ports:
+    #   - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Empty => same-origin; nginx proxies /api to the backend service.
+        VITE_API_BASE_URL: ""
+        # Put your Google Maps key here (or in a .env file next to this one, as
+        # VITE_GOOGLE_MAPS_API_KEY=...). Safe to leave blank — the app still runs.
+        VITE_GOOGLE_MAPS_API_KEY: "${VITE_GOOGLE_MAPS_API_KEY:-}"
+    image: durga-puja-2026/frontend:latest
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"

@@ -1,0 +1,6 @@
+# Only these packages are needed at runtime inside AWS Lambda.
+# The Terraform build script installs exactly these into the deployment zip,
+# keeping the package small (uvicorn is not needed under Mangum).
+fastapi==0.115.6
+pydantic==2.10.4
+mangum==0.19.0

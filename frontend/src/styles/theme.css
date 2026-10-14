@@ -1,0 +1,175 @@
+/* ======================================================================
+   Durga Puja 2026 — Theme tokens, base styles, motif animations.
+   Palette: crimson (alta/sindoor), golden yellow, pristine white (kash phool).
+   ====================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Core palette */
+  --crimson: #c1121f;
+  --crimson-deep: #7a0a12;
+  --crimson-900: #540711;
+  --gold: #e8a51c;
+  --gold-light: #ffd56b;
+  --gold-soft: #f6c453;
+  --marigold: #ef6c00;
+  --leaf: #2e7d32;
+
+  /* Neutrals (warm) */
+  --cream: #fff8f0;
+  --cream-2: #fbf1e3;
+  --paper: #fffdf9;
+  --ink: #2a0a0a;
+  --ink-soft: #6b4034;
+  --line: #efddc7;
+  --white: #ffffff;
+
+  /* Gradients */
+  --grad-festive: linear-gradient(135deg, #9b0a14 0%, #c1121f 45%, #ef6c00 100%);
+  --grad-gold: linear-gradient(135deg, #ffd56b 0%, #e8a51c 100%);
+  --grad-paper: linear-gradient(180deg, #fffdf9 0%, #fbf1e3 100%);
+
+  /* Elevation (warm-tinted shadows) */
+  --shadow-sm: 0 1px 3px rgba(122, 10, 18, 0.1);
+  --shadow-md: 0 8px 24px rgba(122, 10, 18, 0.14);
+  --shadow-lg: 0 18px 48px rgba(122, 10, 18, 0.2);
+  --ring-gold: 0 0 0 3px rgba(232, 165, 28, 0.35);
+
+  /* Radii */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  /* Type */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-bengali: 'Baloo Da 2', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --maxw: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(232, 165, 28, 0.12), transparent 60%),
+    radial-gradient(rgba(232, 165, 28, 0.16) 1.2px, transparent 1.3px);
+  background-size: 100% 520px, 22px 22px;
+  background-repeat: no-repeat, repeat;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--crimson);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+code,
+pre {
+  font-family: 'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--crimson-deep);
+}
+
+/* ---------------- Animations ---------------- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--rot, 0deg)); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------- Loading screen ---------------- */
+.app-loading {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  background: var(--grad-paper);
+  color: var(--crimson-deep);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.chakra-spinner {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 6px solid rgba(193, 18, 31, 0.18);
+  border-top-color: var(--crimson);
+  border-right-color: var(--gold);
+  animation: spin 0.9s linear infinite;
+}
+
+/* ---------------- Torana divider ---------------- */
+.torana {
+  width: 100%;
+  line-height: 0;
+  filter: drop-shadow(0 4px 4px rgba(122, 10, 18, 0.12));
+}
+.torana.section-gap {
+  margin: 48px 0 8px;
+}

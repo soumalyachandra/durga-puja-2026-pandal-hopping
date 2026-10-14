@@ -1,0 +1,36 @@
+# ---- Node / frontend ----
+node_modules/
+dist/
+.vite/
+
+# ---- Python / backend ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# ---- Terraform ----
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+!example.tfvars
+infra/terraform/build/
+infra/terraform/dist/
+
+# ---- Env & secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

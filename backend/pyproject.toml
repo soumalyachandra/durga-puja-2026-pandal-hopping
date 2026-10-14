@@ -1,0 +1,11 @@
+[project]
+name = "durga-puja-pandal-api"
+version = "1.0.0"
+description = "Durga Puja 2026 Pandal Hopping API (Kolkata & Howrah)."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"

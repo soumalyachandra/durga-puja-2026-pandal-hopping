@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.vite/
+
+# Local env (keep the example)
+.env
+.env.*
+!.env.example
+
+# Logs & OS
+npm-debug.log*
+yarn-debug.log*
+.DS_Store
